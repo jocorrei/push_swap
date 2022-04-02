@@ -1,60 +1,38 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jocorrei <jocorrei@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/12/15 18:42:05 by jocorrei          #+#    #+#              #
-#    Updated: 2021/12/15 18:42:05 by jocorrei         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_utoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putnbr_base.c ft_put_hex.c ft_hex_len.c ft_hex_len_ui.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_printf.c ft_init_array.c ft_printf_utils.c ft_printhex.c
 
-MAKE = make
-
-LIBPATH = libft
-
-LIBFT = ./libft/libft.a
-
-NAME = libftprintf.a
-
-SRC_FILES = ft_printf.c ft_init_array.c ft_printf_utils.c ft_printhex.c
-
-CC = gcc
-
-FLAGS = -c -Wall -Wextra -Werror
-
-INCLUDES = -I /includes
-
-SRC_PATH = srcs/
-
-AR = ar rcs
-
-RM = rm -rf
-
-SRC = $(addprefix $(SRC_PATH), $(SRC_FILES))
+NAME = libft.a
 
 OBJS = $(SRCS:.c=.o)
 
-D_OBJS = *.o
+OBJ = $(addprefix $(OBJ_DIR),$(OBJS))
+SRC_DIR = srcs/
+OBJ_DIR = objs/
 
-$(NAME): 
-		$(OBJS)
-		$(MAKE) -C $(LIBPATH)
-		cp $(LIBFT) $(NAME)
-		$(CC) $(FLAGS) $(INCLUDES) $(SRC)
-		$(AR) $(NAME) $(D_OBJS)
+LIBPATH = libft.h
+
+CC = gcc
+
+CC_FLAGS = -c -Wall -Wextra -Werror
 
 all: $(NAME)
 
-clean:  
-		$(RM) $(D_OBJS)
-		$(MAKE) clean -C $(LIBPATH)
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "##### libft created #####"
 
-fclean: clean 
-		$(MAKE) fclean -C $(LIBPATH)
-		$(RM) $(NAME)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	@gcc $(FLAGS) -o $@ -c $< $(INC)
+
+clean:
+	@rm -f $(OBJ)
+	@echo "##### Removed libft object files #####"
+
+fclean: clean
+	@rm -f $(NAME)
+	@echo "##### Removed libft.a #####"
 
 re: fclean all
 
-.PHONY:		all clean fclean re
+.PHONY: all clean fclean re

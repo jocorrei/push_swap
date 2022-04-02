@@ -15,6 +15,7 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 int		ft_printf(const char *str, ...);
 void	init_array(int (**f)(va_list args));

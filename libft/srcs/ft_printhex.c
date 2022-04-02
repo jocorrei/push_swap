@@ -9,9 +9,8 @@
 /*   Updated: 2021/12/15 18:39:48 by jocorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../includes/ft_printf.h"
-#include "../libft/libft.h"
+#include "../includes/libft.h"
 
 int	printx(va_list args)
 {
