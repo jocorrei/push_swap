@@ -1,5 +1,34 @@
 #include "../includes/push_swap.h"
 
+int check_args(int argc, char **argv)
+{
+    int i;
+    int j;
+
+    i = 1;
+    j = 0;
+    while (i < argc)
+    {
+        while (argv[i][j])
+        {   
+            if (ft_isdigit(argv[i][j]))
+                j++;
+            else
+            {
+                ft_printf("Error: Argument is not a digit");
+                return 0;
+            }
+        }
+        i++;
+    }
+    return 1;
+}
+
+// char **organize_args(char **args)
+// {
+
+// }
+
 node* createLinkedList(int argc, char **argv)
 {
     node* head = NULL;
@@ -44,6 +73,8 @@ int main(int argc, char **argv)
 {
     node *head = NULL;
     
+    if (!check_args(argc, argv))
+        return 0;
     head = createLinkedList(argc, argv);
     printLinkedList(head);
 	return 0;
