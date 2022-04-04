@@ -1,11 +1,11 @@
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
+#include "../libft/includes/libft.h"
+
 typedef struct node {
-	int data;
+	char		*value;
 	struct node *next;
 } node;
-
-node* createLinkedList(int size);
 
 #endif

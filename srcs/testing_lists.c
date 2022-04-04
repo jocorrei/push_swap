@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 node* createLinkedList(int size)
 {
@@ -9,12 +7,12 @@ node* createLinkedList(int size)
 	node* p = NULL;
 	int i = 0;
 
-	while (i < size)
+	while (i++ < size)
     {
 		temp = (node* )malloc(sizeof(node*));
 
 		printf("enteder number: ");
-		scanf("%d", &(temp->data));
+		scanf("%d", &(temp->value));
 		temp->next = NULL;
 
 		if (head == NULL)
@@ -26,24 +24,21 @@ node* createLinkedList(int size)
 				p = p->next;
 			p->next = temp;
 		}
-		i++;
     }
-	i++;
 	return head;
 }
 
 void printLinkedList(node* head)
 {
-	node* p = NULL;
+	node* p = head;
 
-	p = head;
-
-	while (p->next != NULL)
+	while (p->next)
 	{
-		printf("%d", p->data);
-		p++;
+		printf("%d", p->value);
+		p = p->next;
 	}
-	printf("%d", p->data);
+	printf("%d", p->value);
+	free(head);
 	return ;
 }
 

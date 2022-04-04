@@ -1,9 +1,50 @@
-MAKE = make
+MAKE		=	make
 
-LIBPATH = ./includes
+LIBPATH		=	libft
 
-NAME = push_swap.a
+LIB 		=	libft.a
 
-SRC_FILES = ft_printf.c ft_init_array.c ft_printf_utils.c ft_printhex.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_utoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putnbr_base.c ft_put_hex.c ft_hex_len.c ft_hex_len_ui.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+NAME		=	push_swap
 
-OBJS = $(SRCS:.c=.o)
+SRC_FILES	=	push_swap.c
+
+OBJS		=	$(SRC_FILES:.c=.o)
+
+CC			= 	gcc
+
+SRC_DIR		=	srcs/
+
+OBJS_DIR	=	objs/
+
+FLAGS 		=	-c	-Wall -Wextra -Werror
+
+INCLUDE		=	-I includes/	-I $(LIBPATH)
+
+RM 			=	rm -rf
+
+PS_SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
+
+PS_OBJS		=	$(PS_SRCS:$(SRC_DIR)%.c=$(OBJS_DIR)%.o)
+
+all			:	$(NAME)
+
+objs/%.o	:	srcs/%.c
+				@mkdir -p $(OBJS_DIR)
+				$(CC) -g $(FLAGS) $(INCLUDE) $< -o $@
+
+$(NAME)		:	$(PS_OBJS)
+				@make -C $(LIBPATH) --silent
+				$(CC) -o $(NAME) $(PS_OBJS) -L $(LIBPATH) -lft
+				@echo "##### Compiled object files #####"
+
+clean		:	
+				@make -C $(LIBPATH) fclean  --silent
+				@rm -f $(PS_OBJS) $(SRC_DIR)push_swap push_swap
+				@echo "##### Removed push_swap files #####"
+
+fclean		:	clean
+				@make -C $(LIBPATH) fclean  --silent
+				@rm -f $(NAME)
+				@echo "##### Removed all files #####
+
+.PHONY: all clean fclean re
