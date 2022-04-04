@@ -46,9 +46,9 @@ char	**ft_split(char const *s, char c)
 			s++;
 		start = (char *)s;
 		len = 0;
-		while (*s++ != c && *s)
+		while (*(++s) != c && *s)
 			len++;
-		split[i++] = ft_substr(start, 0, len);
+		split[i++] = ft_substr(start, 0, len+1);
 	}
 	split[i + 1] = 0;
 	return (split);
