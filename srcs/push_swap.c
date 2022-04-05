@@ -40,7 +40,7 @@ node* createLinkedList(int argc, char **argv)
         temp->value = argv[i++];
         temp->next = NULL;
         if (!head)
-            head=temp;
+            head = temp;
         else
         {
             p = head;
@@ -62,7 +62,6 @@ void printLinkedList(node* head)
 		p = p->next;
 	}
 	printf("%s\n", p->value);
-	free(head);
 	return ;
 }
 
@@ -70,14 +69,22 @@ int main(int argc, char **argv)
 {
 	node *head = NULL;
 
-	if (!check_args(argc, argv))
-	{
-		// ERROR should be returned to stder not stdin
-		printf("ERROR");
+	// if (!check_args(argc, argv))
+	// {
+	// 	// ERROR should be returned to stder not stdin
+	// 	printf("ERROR");
+	// 	return 0;
+	// }		
+	// if (argc == 2)
+	// 	argv = ft_split(argv[1], ' ');
+
+	if (argc <= 1)
 		return 0;
-	}		
 	if (argc == 2)
 		argv = ft_split(argv[1], ' ');
+	if (argc > 2)
+		argv = &argv[1];
+	// take off argc as argument of the createLinkedList (calculate the lenght inside the functions)
 	head = createLinkedList(argc, argv);
     printLinkedList(head);
 	return 0;
