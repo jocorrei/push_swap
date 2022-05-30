@@ -8,4 +8,7 @@ typedef struct node {
 	struct node *next;
 } node;
 
+int check_digit(int argc, char **argv);
+int check_repeted(int argc, char **argv);
+
 #endif

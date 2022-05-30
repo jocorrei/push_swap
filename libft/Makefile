@@ -34,5 +34,4 @@ fclean: clean
 	@echo "##### Removed libft.a #####"
 
 re: fclean all
-
 .PHONY: all clean fclean re
