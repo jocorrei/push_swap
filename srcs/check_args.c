@@ -46,7 +46,8 @@ int check_interger_limits(int argc, char **argv)
     i = 0;
     while (++k < argc)
     {
-        if ((argv[k][i] == '+' && (ft_atoi(&argv[k][i]) < 0)) || (argv[k][i] == '-' && (ft_atoi(&argv[k][i]) > 0)))
+        if ((argv[k][i] == '+' && (ft_atoi(&argv[k][i]) < 0)) 
+            || (argv[k][i] == '-' && (ft_atoi(&argv[k][i]) > 0)))
             return 0;
         else if (ft_isdigit(argv[k][i]) && (ft_atoi(&argv[k][i]) < 0))
             return 0;
