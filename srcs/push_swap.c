@@ -40,28 +40,12 @@ void printLinkedList(node* head)
 int main(int argc, char **argv)
 {
 	node *head = NULL;
-	int k;
-	int i;
-	char **ptr;
-	i = 1;
-	k = 0;
-	// TODO: refactor to a checker function
-	if (argc <= 1)
-		return 0;
-	if (argc == 2)
+	argc = check_args(argc, argv);
+
+	if (argc)
 	{
-		ptr = ft_split(argv[1], ' ');
-		while (ptr[k])
-			argv[i++] = ptr[k++];
-		argc = i;
+		head = createLinkedList(argc, argv);
+    	printLinkedList(head);
 	}
-	if (!check_digit(argc, argv) || !check_repeted(argc, argv))
-	{
-		// ERROR should be returned to stder not stdin
-		printf("ERROR");
-		return 0;
-	}
-	head = createLinkedList(argc, argv);
-    printLinkedList(head);
 	return 0;
 }

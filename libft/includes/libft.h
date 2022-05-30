@@ -72,5 +72,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 int		ft_putnbr_base(unsigned int nbr, char *base);
 void	put_hex(unsigned long long nbr);
 int		ft_str_is_numbers(const char *str);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_atol(const char *str);
 
 #endif

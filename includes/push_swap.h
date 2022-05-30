@@ -10,5 +10,7 @@ typedef struct node {
 
 int check_digit(int argc, char **argv);
 int check_repeted(int argc, char **argv);
+int check_args(int argc, char **argv);
+int check_interger_limits(int argc, char **argv);
 
 #endif
