@@ -16,6 +16,8 @@ int check_interger_limits(int argc, char **argv);
 void swap_a(node* stack);
 void swap_b(node* stack);
 void swap_s(node* stack_a, node* stack_b);
+void rotate_b(node *stack);
+void rotate_a(node *stack);
 
 
 #endif

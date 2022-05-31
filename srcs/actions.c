@@ -39,23 +39,38 @@ void swap_s(node* stack_a, node* stack_b)
     return ;
 }
 
-// int rotate(node* stack)
-// {
-//     char *temp1;
-//     char *temp2;
-//     node* head;
+int rotate(node* stack)
+{
+	char *temp1 = NULL;
+	char *temp2 = NULL;
+	node *head = NULL;
 
-//     head = stack;
-//     temp1 = stack->value;
-//     while (stack->next)
-//         stack = stack->next;
-//     temp2 = stack->value;
-//     stack->value = temp1;
-//     while(stack != head)
-//     {
+	head = stack;
+	temp1 = head->value;
+	while (stack->next)
+		stack = stack->next;
+	temp2 = stack->prev->value;
+	stack->prev->value = temp1;
+	while (stack->prev != head)
+	{
+		stack = stack->prev;
+		temp1 = stack->prev->value;
+		stack->prev->value = temp2;
+		temp2 = temp1;
+	}
+	return 1;
+}
 
-//     }    
-// }
+void rotate_a(node *stack)
+{
+	rotate(stack);
+	write(1, "ra\n", 3);
+	return ;
+}
 
-
-
+void rotate_b(node *stack)
+{
+	rotate(stack);
+	write(1, "rb\n", 3);
+	return ;
+}
