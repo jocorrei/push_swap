@@ -7,11 +7,11 @@ node* init_stack_a(int argc, char **argv)
 	node* p = NULL;
 
 	int i = 0;
-    while (i < argc)
+    while (++i < argc)
     {
-        temp = (node*)malloc(sizeof(node*)*2 + sizeof(char *));
+        temp = (node*)malloc(sizeof(node*) * 2 + sizeof(char *));
 		temp->prev = NULL;
-		temp->value = argv[++i];
+		temp->value = argv[i];
         temp->next = NULL;
 		if (!head)
             head = temp;
@@ -21,46 +21,19 @@ node* init_stack_a(int argc, char **argv)
             while (p->next)
                 p = p->next;
             p->next = temp;
-			temp->prev = p;
+			p->next->prev = p;
         }
     }
     return head;
 }
 
-node* init_stack_b(int size) {
-	node* head = NULL;
-	node* temp = NULL;
-	node* p = NULL;
-	int i;
-
-	i = 0;
-	while (i < size)
-	{
-		temp = (node*)malloc(sizeof(node*)*2 + sizeof(char *));
-		temp->prev = NULL;
-		temp->value = NULL;
-		temp->next = NULL;
-		if(!head)
-			head = temp;
-		else
-		{
-			p = head;
-            while (p->next)
-                p = p->next;
-            p->next = temp;
-			temp->prev = p;
-		}
-		i++;
-	}
-	return head;
-}
 
 void printLinkedList(node* head)
 {
 	node* p = head;
 
 	printf("\n list: \n");
-	while (p->next)
+	while (p)
 	{
 		ft_printf("%s\n", p->value);
 		p = p->next;
@@ -80,26 +53,40 @@ void freeList(node* head)
     }
 }
 
+int count(node *head) {
+    int cnt = 0;
+    node *current_node = head;
+    while ( current_node != NULL) {
+        cnt++;
+        current_node = current_node->next;
+    }
+return(cnt);
+}
+
 int main(int argc, char **argv)
 {
 	node *head_a = NULL;
 	node *head_b = NULL;
+	int test = 0;
 	argc = check_args(argc, argv);
 
 	if (argc)
 	{	
 		head_a = init_stack_a(argc, argv);
-		head_b = init_stack_b(argc);
-		swap_a(head_a);
-		swap_b(head_b);
-		swap_s(head_a, head_b);
-		rotate_a(head_a);
-		rotate_b(head_b);
-		printf("\nstack_a:\n");
+		// swap_a(head_a);
+		// swap_b(head_b);
+		// swap_s(head_a, head_b);
+		// rotate_a(head_a);
+		// rotate_b(head_b);
+		// rev_rotate(head_a);
+		push(head_a, head_b);
+		test = count(head_a);
+		printf("\ncounting linked list nodes: %d", test);
+		printf("\nstack_a:");
     	printLinkedList(head_a);
-		printf("\nstack_b:\n");
+		printf("\nstack_b:");
 		printLinkedList(head_b);
-		freeList(head_a);
+		// freeList(head_a);
 		freeList(head_b);
 	}
 	return 0;

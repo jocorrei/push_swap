@@ -18,6 +18,8 @@ void swap_b(node* stack);
 void swap_s(node* stack_a, node* stack_b);
 void rotate_b(node *stack);
 void rotate_a(node *stack);
-
+int rev_rotate(node *stack);
+void printLinkedList(node* head);
+int push(node *stack_one, node* stack_two);
 
 #endif
