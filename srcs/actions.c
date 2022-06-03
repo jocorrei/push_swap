@@ -126,22 +126,22 @@ void rev_rotate_s(node *stack_a, node* stack_b)
 	write(1, "rrr\n", 4);
 }
 
-int push(node *stack_one, node* stack_two)
+node *push(node **stack_one)
 {
-	node* temp;
-	node* temp2;
+	node *temp = *stack_one;
+	char *temp2 = temp->value;
+	*stack_one = temp->next;
+
+	node* test = (node*)malloc(sizeof(node));
+	test->prev = NULL;
+	test->value = temp2;
+	test->next = NULL;
+
+	// *stack_two = temp_a;
+	// free(temp_a);
+	// free(temp_b);
 
 	// TODO: fix this. change the pointers value withou returning
 
-	temp = stack_one;
-	stack_one = stack_one->next;
-	temp2 = (node*)malloc(sizeof(node) * 2 + sizeof(char *));
-	temp2->prev = NULL;
-	temp2->value = stack_one -> value;
-	temp2->next = NULL;
-	stack_two = temp2;
-	printf("fuck this man! %s", stack_two->value);
-	free(temp);
-	free(temp2);
-	return 1;
+	return test;
 }

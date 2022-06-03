@@ -9,6 +9,7 @@ node* init_stack_a(int argc, char **argv)
 	int i = 0;
     while (++i < argc)
     {
+		// TODO: check if should ne sizeof(node) instead of sizeof(node*)
         temp = (node*)malloc(sizeof(node*) * 2 + sizeof(char *));
 		temp->prev = NULL;
 		temp->value = argv[i];
@@ -79,14 +80,14 @@ int main(int argc, char **argv)
 		// rotate_a(head_a);
 		// rotate_b(head_b);
 		// rev_rotate(head_a);
-		push(head_a, head_b);
+		head_b = push(&head_a);
 		test = count(head_a);
 		printf("\ncounting linked list nodes: %d", test);
 		printf("\nstack_a:");
     	printLinkedList(head_a);
 		printf("\nstack_b:");
 		printLinkedList(head_b);
-		// freeList(head_a);
+		freeList(head_a);
 		freeList(head_b);
 	}
 	return 0;
