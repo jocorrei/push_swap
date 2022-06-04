@@ -20,6 +20,6 @@ void rotate_b(node *stack);
 void rotate_a(node *stack);
 int rev_rotate(node *stack);
 void printLinkedList(node* head);
-node *push(node **stack_one);
+void push(node **stack_one, node **stack_two);
 
 #endif

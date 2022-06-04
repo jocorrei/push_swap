@@ -2,9 +2,10 @@
 
 int swap(node* stack)
 {
-    char *temp = NULL;
-    node* head;
+    char *temp;
+    node *head;
     
+	temp = NULL;
     head = stack;
     if (head->value == NULL || head->next == NULL)
         return 0;
@@ -41,10 +42,12 @@ void swap_s(node* stack_a, node* stack_b)
 
 int rotate(node* stack)
 {
-	char *temp1 = NULL;
-	char *temp2 = NULL;
-	node *head = NULL;
+	char *temp1;
+	char *temp2;
+	node *head;
 
+	temp1 = NULL;
+	temp2 = NULL;
 	head = stack;
 	while (stack->next)
 		stack = stack->next;
@@ -85,7 +88,7 @@ int rev_rotate(node *stack)
 {
 	node* head;
 	char *temp1;
-	char * temp2;
+	char *temp2;
 
 	temp1 = NULL;
 	temp2 = NULL;
@@ -126,22 +129,25 @@ void rev_rotate_s(node *stack_a, node* stack_b)
 	write(1, "rrr\n", 4);
 }
 
-node *push(node **stack_one)
+void push(node **stack_one, node **stack_two)
 {
 	node *temp = *stack_one;
-	char *temp2 = temp->value;
+	char *value = temp->value;
 	*stack_one = temp->next;
+	// node *head_b = *stack_two;
 
-	node* test = (node*)malloc(sizeof(node));
-	test->prev = NULL;
-	test->value = temp2;
-	test->next = NULL;
+	node* new_node = (node*)malloc(sizeof(node));
+	new_node->prev = NULL;
+	new_node->value = value;
+	new_node->next = NULL;
 
-	// *stack_two = temp_a;
-	// free(temp_a);
-	// free(temp_b);
-
-	// TODO: fix this. change the pointers value withou returning
-
-	return test;
+	if (!(*stack_two))
+		*stack_two = new_node;
+	else
+	{
+		while ((*stack_two)->next)
+			*stack_two = (*stack_two)->next;
+		*stack_two = new_node;
+	}
+	free(temp);
 }
