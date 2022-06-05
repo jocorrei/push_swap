@@ -73,15 +73,17 @@ int main(int argc, char **argv)
 	if (argc)
 	{	
 		head_a = init_stack_a(argc, argv);
-		// swap_a(head_a);
-		// swap_b(head_b);
-		// swap_s(head_a, head_b);
-		// rotate_a(head_a);
-		// rotate_b(head_b);
-		// rev_rotate(head_a);
 		push_b(&head_a, &head_b);
 		push_b(&head_a, &head_b);
 		push_b(&head_a, &head_b);
+		push_b(&head_a, &head_b);
+		swap_b(head_b);
+		push_a(&head_a, &head_b);
+		rotate_b(&head_b);
+		rotate_a(&head_a);
+		swap_s(head_a, head_b);
+		rev_rotate_a(&head_a);
+		rev_rotate_b(&head_b);
 		test = count(head_a);
 		printf("\ncounting linked list nodes: %d", test);
 		printf("\nstack_a:");
