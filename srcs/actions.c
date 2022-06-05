@@ -129,25 +129,39 @@ void rev_rotate_s(node *stack_a, node* stack_b)
 	write(1, "rrr\n", 4);
 }
 
-void push(node **stack_one, node **stack_two)
+int push(node **stack_one, node **stack_two)
 {
-	node *temp = *stack_one;
-	char *value = temp->value;
-	*stack_one = temp->next;
-	// node *head_b = *stack_two;
-
-	node* new_node = (node*)malloc(sizeof(node));
-	new_node->prev = NULL;
-	new_node->value = value;
-	new_node->next = NULL;
-
-	if (!(*stack_two))
-		*stack_two = new_node;
+	node *temp;
+	node *head_b;
+	
+	temp = *stack_one;
+	head_b = *stack_two;
+	if (!*stack_one)
+		return 0;
+	*stack_one = (*stack_one)->next;
+	if (!head_b)
+	{
+		temp->next = NULL;
+		*stack_two = temp;
+	}
 	else
 	{
-		while ((*stack_two)->next)
-			*stack_two = (*stack_two)->next;
-		*stack_two = new_node;
+		*stack_two = temp;
+		(*stack_two)->next = head_b;
 	}
-	free(temp);
+	return 1;
+}
+
+void push_a(node **stack_one, node **stack_two)
+{
+	if (push(stack_two, stack_one))
+		write(1, "pa\n", 3);
+	return ;
+}
+
+void push_b(node **stack_one, node **stack_two)
+{
+	if (push(stack_one, stack_two))
+		write(1, "pb\n", 3);
+	return ;	
 }

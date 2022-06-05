@@ -79,9 +79,9 @@ int main(int argc, char **argv)
 		// rotate_a(head_a);
 		// rotate_b(head_b);
 		// rev_rotate(head_a);
-		push(&head_a, &head_b);
-		// push(&head_a, &head_b);
-		// push(&head_a, &head_b);
+		push_b(&head_a, &head_b);
+		push_b(&head_a, &head_b);
+		push_b(&head_a, &head_b);
 		test = count(head_a);
 		printf("\ncounting linked list nodes: %d", test);
 		printf("\nstack_a:");
@@ -89,7 +89,7 @@ int main(int argc, char **argv)
 		printf("\nstack_b:");
 		printLinkedList(head_b);
 		freeList(head_a);
-		freeList(head_b);
+		// freeList(head_b);
 	}
 	return 0;
 }
