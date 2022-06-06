@@ -20,8 +20,11 @@ void rotate_b(node **stack);
 void rotate_a(node **stack);
 void rev_rotate_a(node **stack);
 void rev_rotate_b(node **stack);
-void printLinkedList(node* head);
+void print_stack(node* head);
 void push_a(node **stack_one, node **stack_two);
 void push_b(node **stack_one, node **stack_two);
+int is_sorted(node *stack);
+void sort_small(node **stack_a, node **stack_b);
+int count_stack(node *stack);
 
 #endif
