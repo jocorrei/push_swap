@@ -26,5 +26,7 @@ void push_b(node **stack_one, node **stack_two);
 int is_sorted(node *stack);
 void sort_small(node **stack_a, node **stack_b);
 int count_stack(node *stack);
+void push_smaller(node **stack_a, node **stack_b);
+void free_stack(node* head);
 
 #endif

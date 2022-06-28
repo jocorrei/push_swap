@@ -2,7 +2,6 @@
 
 void sort_small(node **stack_a, node **stack_b)
 {
-    (void)stack_b;
     if (count_stack(*stack_a) == 2)
         swap_a(*stack_a);
     else if (count_stack(*stack_a) == 3)
@@ -10,10 +9,23 @@ void sort_small(node **stack_a, node **stack_b)
         swap_a(*stack_a);
         if (ft_atoi((*stack_a)->value) < ft_atoi((*stack_a)->next->value))
             rev_rotate_a(stack_a);
-        else
-            rotate_a(stack_a);
         if(!is_sorted(*stack_a))
             swap_a(*stack_a);
+    }
+    else if (count_stack(*stack_a) == 4)
+    {
+        push_smaller(stack_a, stack_b);
+        sort_small(stack_a, stack_b);
+        if (is_sorted(*stack_b))
+            swap_b(*stack_b);
+        push_a(stack_a, stack_b);
+        push_a(stack_a, stack_b);
+        return ;
+    }
+    else
+    {
+        push_smaller(stack_a, stack_b);
+        sort_small(stack_a, stack_b);
     }
     return ;
 }
