@@ -28,5 +28,6 @@ void sort_small(node **stack_a, node **stack_b);
 int count_stack(node *stack);
 void push_smaller(node **stack_a, node **stack_b);
 void free_stack(node* head);
+void sort_big(node **stack_a, node **stack_b);
 
 #endif

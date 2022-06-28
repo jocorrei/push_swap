@@ -40,6 +40,8 @@ int main(int argc, char **argv)
 			return 0;
 		if (count_stack(head_a) <= 5)
 			sort_small(&head_a, &head_b);
+		else
+			sort_big(&head_a, &head_b);
 		printf("\nstack_a:");
     	print_stack(head_a);
 		printf("\nstack_b:");
