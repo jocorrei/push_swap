@@ -5,6 +5,7 @@
 
 typedef struct node {
 	struct node *prev;
+	int			chunk;
 	int			value;
 	struct node *next;
 } node;
@@ -29,5 +30,6 @@ int count_stack(node *stack);
 void push_smaller(node **stack_a, node **stack_b);
 void free_stack(node* head);
 void sort_big(node **stack_a, node **stack_b);
+node* list_copy(node* head);
 
 #endif

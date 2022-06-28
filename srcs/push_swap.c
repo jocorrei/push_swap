@@ -12,6 +12,7 @@ node* init_stack_a(int argc, char **argv)
         temp = (node*)malloc(sizeof(node));
 		temp->prev = NULL;
 		temp->value = ft_atoi(argv[i]);
+		temp->chunk = 0;
         temp->next = NULL;
 		if (!head)
             head = temp;
@@ -34,7 +35,7 @@ int main(int argc, char **argv)
 	argc = check_args(argc, argv);
 
 	if (argc)
-	{	
+	{
 		head_a = init_stack_a(argc, argv);
 		if (is_sorted(head_a))
 			return 0;
