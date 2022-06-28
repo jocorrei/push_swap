@@ -2,12 +2,11 @@
 
 int swap(node* stack)
 {
-    char *temp;
+    int temp;
     node *head;
     
-	temp = NULL;
     head = stack;
-    if (head->value == NULL || head->next == NULL)
+    if (head == NULL || head->next == NULL)
         return 0;
     temp = head->value;
     stack = head->next;

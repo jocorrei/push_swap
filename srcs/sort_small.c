@@ -7,7 +7,7 @@ void sort_small(node **stack_a, node **stack_b)
     else if (count_stack(*stack_a) == 3)
     {
         swap_a(*stack_a);
-        if (ft_atoi((*stack_a)->value) < ft_atoi((*stack_a)->next->value))
+        if ((*stack_a)->value < (*stack_a)->next->value)
             rev_rotate_a(stack_a);
         if(!is_sorted(*stack_a))
             swap_a(*stack_a);

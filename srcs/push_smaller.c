@@ -31,15 +31,15 @@ void push_smaller(node **stack_a, node **stack_b)
 
     ptr = *stack_a;
     i = 0;
-    smaller = ft_atoi(ptr->value);
+    smaller = ptr->value;
     while (ptr->next)
     {
         ptr = ptr->next;
-        if (ft_atoi(ptr->value) < smaller)
-            smaller = ft_atoi(ptr->value);
+        if (ptr->value < smaller)
+            smaller = ptr->value;
     }
     ptr = *stack_a;
-    while (ft_atoi(ptr->value) != smaller)
+    while (ptr->value != smaller)
     {
         ptr = ptr->next;
         i++;

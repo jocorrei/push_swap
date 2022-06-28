@@ -6,7 +6,7 @@ LIB 		=	libft.a
 
 NAME		=	push_swap
 
-SRC_FILES	=	push_swap.c check_args.c sort_small.c utils.c swap.c rev_rotate.c push.c rotate.c push_smaller.c
+SRC_FILES	=	push_swap.c check_args.c sort_small.c utils.c swap.c rev_rotate.c push.c rotate.c push_smaller.c sort_big.c
 
 OBJS		=	$(SRC_FILES:.c=.o)
 

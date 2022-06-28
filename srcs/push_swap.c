@@ -11,7 +11,7 @@ node* init_stack_a(int argc, char **argv)
     {
         temp = (node*)malloc(sizeof(node));
 		temp->prev = NULL;
-		temp->value = argv[i];
+		temp->value = ft_atoi(argv[i]);
         temp->next = NULL;
 		if (!head)
             head = temp;
