@@ -32,18 +32,18 @@ static void insert_sort(node** head)
     *head = result;
 }
 
-int search_median(node *stack)
+int search_median(node *stack, int chunk)
 {
     node *cpy;
     int size;
     int median;
     int i;
 
-    cpy = list_copy(stack);
+    cpy = list_copy(stack, chunk);
     insert_sort(&cpy);
     size = count_stack(cpy);
     i = -1;
-    while (++i != (size/2))
+    while (++i < (size/2))
         cpy = cpy->next;
     median = cpy->value;
     free_stack(&cpy);

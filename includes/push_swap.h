@@ -30,7 +30,7 @@ int count_stack(node *stack);
 void push_smaller(node **stack_a, node **stack_b);
 void free_stack(node** head);
 void sort_big(node **stack_a, node **stack_b);
-node* list_copy(node* head);
-int search_median(node *stack);
+node* list_copy(node* head, int chunk);
+int search_median(node *stack, int chunk);
 
 #endif

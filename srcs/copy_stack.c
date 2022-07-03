@@ -1,13 +1,15 @@
 #include "../includes/push_swap.h"
 
-node* list_copy(node* head)
+node* list_copy(node* head, int chunk)
 {
     node* curr;
     node* copy = NULL;
     node* tail = NULL;
 
     curr = head;
-    while (curr != NULL)
+    while (curr->chunk != chunk && curr != NULL)
+        curr = curr->next;
+    while (curr != NULL && curr->chunk == chunk)
     {
         if (copy == NULL)
         {
