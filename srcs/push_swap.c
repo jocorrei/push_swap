@@ -43,11 +43,13 @@ int main(int argc, char **argv)
 			sort_small(&head_a, &head_b);
 		else
 			sort_big(&head_a, &head_b);
-		printf("\nstack_a:");
-    	print_stack(head_a);
-		printf("\nstack_b:");
-		print_stack(head_b);
-		free_stack(head_a);
+		
+		// printf("\nstack_a:");
+    	// print_stack(head_a);
+		// printf("\nstack_b:");
+		// print_stack(head_b);
+		free_stack(&head_a);
+		free_stack(&head_b);
 	}
 	return 0;
 }

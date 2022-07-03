@@ -1,67 +1,51 @@
 #include "../includes/push_swap.h"
 
-static void silenced_rev_and_push(node **stack_a, node **stack_b, int i)
+static void sorted_insert(node** head, node* new_node)
 {
-    if (i == 0)
-        push_b(stack_a, stack_b);
-    else if (i == 1)
-    {
-        swap_a(*stack_a);
-        push_b(stack_a, stack_b);
+    node dummy;
+    node* current;
+
+    current = &dummy;
+    dummy.next = *head;
+    while (current->next != NULL && current->next->value < new_node->value) {
+        current = current->next;
     }
-    else if (i == 2)
-    {
-        rev_rotate_a(stack_a);
-        rev_rotate_a(stack_a);
-        push_b(stack_a, stack_b);
-    }
-    else
-    {
-        rev_rotate_a(stack_a);
-        push_b(stack_a, stack_b);
-    }
-    return ;
+    new_node->next = current->next;
+    current->next = new_node;
+    *head = dummy.next;
 }
-
-static void silenced_push_smaller(node **stack_a, node **stack_b)
+ 
+static void insert_sort(node** head)
 {
-    int i;
-    int smaller;
-    node *ptr;
+    node* result;
+    node* current;
+    node* next;
 
-    ptr = *stack_a;
-    i = 0;
-    smaller = ptr->value;
-    while (ptr->next)
+    result = NULL;
+    current = *head;
+    while (current != NULL)
     {
-        ptr = ptr->next;
-        if (ptr->value < smaller)
-            smaller = ptr->value;
-    }
-    ptr = *stack_a;
-    while (ptr->value != smaller)
-    {
-        ptr = ptr->next;
-        i++;
-    }
-    silenced_rev_and_push(stack_a, stack_b, i);
-    return ;
+        next = current->next;
+        sorted_insert(&result, current);
+        current = next;
+    } 
+    *head = result;
 }
 
 int search_median(node *stack)
 {
-    node *copy = NULL;
-    node *ptr = stack;
-    int smaller;
+    node *cpy;
+    int size;
+    int median;
+    int i;
 
-    smaller = ptr->value;
-    while (ptr->next)
-    {
-        ptr = ptr->next;
-        if (ptr->value < smaller)
-            smaller = ptr->value;
-    }
-    copy = (node*)malloc(sizeof(node));
-    copy->prev = NULL;
-    copy->value = smaller;   
+    cpy = list_copy(stack);
+    insert_sort(&cpy);
+    size = count_stack(cpy);
+    i = -1;
+    while (++i != (size/2))
+        cpy = cpy->next;
+    median = cpy->value;
+    free_stack(&cpy);
+    return median;
 }

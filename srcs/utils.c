@@ -1,41 +1,45 @@
 #include "../includes/push_swap.h"
 
+
+// REMOVE PRINT_F BEFORE GET FUCKED
 void print_stack(node* head)
 {
 	node* p;
 
     p = head;
-	ft_printf("\n list: \n");
+	printf("list: \n");
 	while (p)
 	{
-		ft_printf("%d\n", p->value);
+		printf("value: %d, chunk: %d\n", p->value, p->chunk);
 		p = p->next;
 	}
 	return ;
 }
 
-void free_stack(node* head)
+void free_stack(node** head)
 {
    node *tmp;
 
-   while (head != NULL)
+   while (*head != NULL)
     {
-       tmp = head;
-       head = head->next;
+       tmp = *head;
+       *head = (*head)->next;
        free(tmp);
+	   tmp = NULL;
     }
+	return ;
 }
 
 int count_stack(node *stack) 
 {
     int cnt;
-    node *current_node;
+    node *curr;
     
     cnt = 0;
-    current_node = stack;
-    while (current_node != NULL) {
+    curr = stack;
+    while (curr != NULL) {
         cnt++;
-        current_node = current_node->next;
+        curr = curr->next;
     }
 	return(cnt);
 }

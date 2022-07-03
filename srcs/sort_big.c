@@ -2,32 +2,37 @@
 
 void sort_big(node **stack_a, node **stack_b)
 {
-    (void)stack_a;
-    (void)stack_b;
-    int i;
-    int value;
-    node *ptr;
-    node *test;
-    
-    i = 0;
-    ptr = *stack_a;
-    i = count_stack(*stack_a)/2;
-    while (--i)
-        ptr = ptr->next;
-    value = ptr->value;
+    int median;
+    node *temp;
+    int size;
+    int chunk;
 
-    ptr = *stack_a;
-    while (ptr->value < value && ptr->next)
+    chunk = 1;
+    while (count_stack(*stack_a) > 2)
     {
-        ptr = ptr->next;
-        (*stack_a)->chunk = 1;
-        push_b(stack_a, stack_b);
+        size = count_stack(*stack_a)/2;
+        median = search_median(*stack_a);
+        temp = *stack_a;
+        while (size != -1)
+        {
+            if (temp->value < median)
+            {
+                temp = temp->next;
+                (*stack_a)->chunk = chunk;
+                push_b(stack_a, stack_b);
+            }
+            else
+            {
+                if ((*stack_a)->value >= median)
+                    rotate_a(stack_a);   
+            }
+            temp = *stack_a;
+            size--;
+        }
+        chunk++;
     }
-
-    printf("\nprinting stack_copy");
-    test = list_copy(*stack_a);
-    print_stack(test);
-
-    printf("\ntesting middle sort algo: %d, %d, %d, %d", i, value, ptr->value, (*stack_a)->chunk);
+    if (!is_sorted(*stack_a))
+        rotate_a(stack_a);
+    print_stack(*stack_b);
     return;
 }
