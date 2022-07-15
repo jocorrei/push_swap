@@ -39,14 +39,15 @@ int main(int argc, char **argv)
 		head_a = init_stack_a(argc, argv);
 		if (is_sorted(head_a))
 			return 0;
-		if (count_stack(head_a) <= 5)
+		if (count_stack(head_a) <= 3)
 			sort_small(&head_a, &head_b);
 		else
 			sort_big(&head_a, &head_b);
 		
-		// print_stack(head_a);
+		print_stack(head_a);
+		print_stack(head_b);
 		free_stack(&head_a);
-		free_stack(&head_b);
+	 	free_stack(&head_b);
 	}
 	return 0;
 }
