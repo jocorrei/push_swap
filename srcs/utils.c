@@ -56,6 +56,8 @@ int count_first_chunk(node *head)
 		temp = temp->next;
 		i++;
 	}
+	if(!temp->next)
+		i++;
 	return (i);
 }
 
