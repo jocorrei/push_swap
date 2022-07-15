@@ -2,34 +2,33 @@
 
 static void sorted_insert(node** head, node* new_node)
 {
-    node dummy;
-    node* current;
+    node temp;
+    node* curr;
 
-    current = &dummy;
-    dummy.next = *head;
-    while (current->next != NULL && current->next->value < new_node->value) {
-        current = current->next;
-    }
-    new_node->next = current->next;
-    current->next = new_node;
-    *head = dummy.next;
+    curr = &temp;
+    temp.next = *head;
+    while (curr->next != NULL && curr->next->value < new_node->value) 
+        curr = curr->next;
+    new_node->next = curr->next;
+    curr->next = new_node;
+    *head = temp.next;
 }
  
 static void insert_sort(node** head)
 {
-    node* result;
-    node* current;
+    node* temp;
+    node* curr;
     node* next;
 
-    result = NULL;
-    current = *head;
-    while (current != NULL)
+    temp = NULL;
+    curr = *head;
+    while (curr != NULL)
     {
-        next = current->next;
-        sorted_insert(&result, current);
-        current = next;
+        next = curr->next;
+        sorted_insert(&temp, curr);
+        curr = next;
     } 
-    *head = result;
+    *head = temp;
 }
 
 int search_median(node *stack, int chunk)

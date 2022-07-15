@@ -45,6 +45,6 @@ clean		:
 fclean		:	clean
 				@make -C $(LIBPATH) fclean  --silent
 				@rm -f $(NAME)
-				@echo "##### Removed all files #####
+				@echo "##### Removed all files #####"
 
 .PHONY: all clean fclean re

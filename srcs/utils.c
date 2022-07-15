@@ -44,6 +44,21 @@ int count_stack(node *stack)
 	return(cnt);
 }
 
+int count_first_chunk(node *head)
+{
+	int		i;
+	node	*temp;
+
+	temp = head;
+	i = 0;
+	while (temp->chunk == head->chunk && temp->next)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (i);
+}
+
 int is_sorted(node *stack)
 {
 	node* p;
@@ -54,9 +69,30 @@ int is_sorted(node *stack)
 	while (p->next)
 	{
 		p = p->next;
-		if (p->value <= value)
+		if (p->value < value)
 			return 0;
 		value = p->value;
+	}
+	return 1;
+}
+
+int is_chunk_sorted(node *head)
+{
+	node *temp;
+	int value;
+	int chunk;
+
+	chunk = head->chunk;
+	value = head->value;
+	temp = head;
+	while(temp->chunk == chunk && temp->next)
+	{
+		temp = temp->next;
+		if (temp->chunk != chunk)
+			break ;
+		if (temp->value > value)
+			return 0;
+		value = temp->value;
 	}
 	return 1;
 }
